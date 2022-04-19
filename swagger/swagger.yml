@@ -1,0 +1,25 @@
+swagger: "2.0"
+info: {}
+paths: {}
+definitions:
+  models.Stats:
+    title: Stats
+    type: object
+    properties:
+      Count_human_dna:
+        type: number
+        format: double
+      Count_mutant_dna:
+        type: number
+        format: double
+      ID:
+        $ref: '#/definitions/primitive.ObjectID'
+      Ratio:
+        type: number
+        format: double
+      StatsCollection:
+        type: integer
+        format: int32
+  primitive.ObjectID:
+    title: ObjectID
+    type: object

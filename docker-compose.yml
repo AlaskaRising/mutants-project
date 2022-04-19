@@ -1,0 +1,46 @@
+version: '3.4'
+
+services:
+
+  api:
+#    build: ./bee_build
+    image: golang:latest
+    container_name: mutants
+    volumes:
+      - gosrc:/go
+      - .:/go/src/mutants-project
+    ports:
+      - 8081:8081
+    working_dir: /go/src
+    environment:
+      - SERVICE_TAGS=traefik.enable=true,traefik.frontend.entryPoints=http,traefik.frontend.rule=Host:mutants.localhost
+      - GO111MODULE=on
+    command: sh -c 'pwd; cd mutants-project; go install github.com/beego/bee; bee run -downdoc=true -gendoc=true'
+    depends_on:
+      - db
+    links:
+      - db
+    networks:
+      - back_end
+
+  db:
+    image: mongo:latest
+    container_name: mutants-db
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+#      - MONGO_INITDB_ROOT_USERNAME="test"
+#      - MONGO_INITDB_ROOT_PASSWORD="test"
+    volumes:
+      - mutants_mongo_data:/data/db
+    ports:
+      - 27018:27017
+    networks:
+      - back_end
+
+volumes:
+  gosrc:
+  mutants_mongo_data:
+networks:
+  back_end:
+    external: true
