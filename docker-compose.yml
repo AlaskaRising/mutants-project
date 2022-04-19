@@ -10,7 +10,7 @@ services:
       - gosrc:/go
       - .:/go/src/mutants-project
     ports:
-      - 8081:8081
+      - 8085:8085
     working_dir: /go/src
     environment:
       - SERVICE_TAGS=traefik.enable=true,traefik.frontend.entryPoints=http,traefik.frontend.rule=Host:mutants.localhost
