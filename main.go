@@ -11,6 +11,7 @@ import (
 
 func main() {
 	dbConnManager.InitDB("host.docker.internal", "27018", "local")
+	//dbConnManager.InitDB("localhost", "27017", "local")
 
 	if beego.BConfig.RunMode == "dev" {
 		beego.BConfig.WebConfig.DirectoryIndex = true

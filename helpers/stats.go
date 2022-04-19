@@ -30,6 +30,19 @@ func UpdateStats(mutant bool) (statsUpdated models.Stats, statsCollection int32)
 		if statsToUpdate.Count_human_dna > 0 {
 			statsToUpdate.Ratio = statsToUpdate.Count_mutant_dna / statsToUpdate.Count_human_dna
 		}
+	} else {
+		statsToUpdate.ID, statsToUpdate.Count_human_dna = primitive.NewObjectID(), 0.0
+		statsToUpdate.Count_mutant_dna, statsToUpdate.StatsCollection = 0.0, 10
+		statsToUpdate.Ratio = 0.0
+		if mutant {
+			statsToUpdate.Count_mutant_dna++
+		} else {
+			statsToUpdate.Count_human_dna++
+		}
+		if statsToUpdate.Count_human_dna > 0 {
+			statsToUpdate.Ratio = statsToUpdate.Count_mutant_dna / statsToUpdate.Count_human_dna
+		}
+		sequenceManager.AddStats(&statsToUpdate)
 	}
 	return statsToUpdate, statsToUpdate.StatsCollection
 }
