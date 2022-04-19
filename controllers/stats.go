@@ -23,8 +23,7 @@ func (c *StatsController) URLMapping() {
 
 // Get ...
 // @Title Get
-// @Description get Stats by id
-// @Param	id		path 	string	true		"The key for staticblock"
+// @Description get Stats
 // @Success 200 {object} models.Stats
 // @Failure 403 :id is empty
 // @router [get]
