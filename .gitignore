@@ -1,0 +1,15 @@
+# Binarios, compilados y temporales
+*.exe
+*.zip
+*.tmp
+*.log
+*~
+main
+
+# IDEs
+.vscode
+.scannerwork/
+
+# Variables de entorno
+*.env
+!template.env
