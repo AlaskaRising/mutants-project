@@ -45,54 +45,55 @@ func diagonalValuestoSlice(dna []string, lenDna, maxLen int) (diagonalDna []stri
 	return diagonalDna
 }
 
-func validateHorizontalDna(dna []string, lenDna, maxLen int) bool {
+func validateHorizontalDna(dna []string, lenDna, maxLen int) int {
+	var auxSequence = 0
 	for i := 0; i < lenDna; i++ {
 		for j := 0; j <= maxLen; j++ {
 			if (dna[i][j] == dna[i][j+1]) && (dna[i][j+1] == dna[i][j+2]) && (dna[i][j+2] == dna[i][j+3]) {
-				return true
+				auxSequence++
 			}
 		}
 	}
-	return false
+	return auxSequence
 }
 
-func validateVerticalDna(dna []string, lenDna, maxLen int) bool {
+func validateVerticalDna(dna []string, lenDna, maxLen int) int {
+	var auxSequence = 0
 	for i := 0; i < lenDna; i++ {
 		for j := 0; j <= maxLen; j++ {
 			if (dna[j][i] == dna[j+1][i]) && (dna[j+1][i] == dna[j+2][i]) && (dna[j+2][i] == dna[j+3][i]) {
-				return true
+				auxSequence++
 			}
 		}
 	}
-	return false
+	return auxSequence
 }
 
-func validateDiagonalDna(diagDna []string) bool {
+func validateDiagonalDna(diagDna []string) int {
+	var auxSequence = 0
 	var lenDiagonalDna = len(diagDna)
 	for i := 0; i < lenDiagonalDna; i++ {
 		var maxLen = len(diagDna[i]) - 4
 		for j := 0; j <= maxLen; j++ {
 			if (diagDna[i][j] == diagDna[i][j+1]) && (diagDna[i][j+1] == diagDna[i][j+2]) && (diagDna[i][j+2] == diagDna[i][j+3]) {
-				return true
+				auxSequence++
 			}
 		}
 	}
-	return false
+	return auxSequence
 }
 
 func IsMutant(dna []string) bool {
+	var totalSequence int = 0
 	var lenDna = len(dna)   //Len N, Table NxN
 	var maxLen = lenDna - 4 //Max position to allow a mutan DNA (Ej:GGGG)
 	if lenDna < 4 {
 		return false
 	}
-	if validateHorizontalDna(dna, lenDna, maxLen) {
-		return true
-	}
-	if validateVerticalDna(dna, lenDna, maxLen) {
-		return true
-	}
-	if validateDiagonalDna(diagonalValuestoSlice(dna, lenDna, maxLen)) {
+	totalSequence += validateHorizontalDna(dna, lenDna, maxLen)
+	totalSequence += validateVerticalDna(dna, lenDna, maxLen)
+	totalSequence += validateDiagonalDna(diagonalValuestoSlice(dna, lenDna, maxLen))
+	if totalSequence > 1 {
 		return true
 	}
 	return false
