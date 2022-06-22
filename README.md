@@ -28,5 +28,10 @@ docker-compose up
 * GET  → /stats/   Return a Json with the DNA verification statistics, e.g.: {“count_mutant_dna”:40, “count_human_dna”:100, “ratio”:0.4}
 >localhost:8085/stats
 
+## Architecture diagram
+![](https://github.com/AlaskaRising/mutants-project/blob/master/diagrams/Blank%20diagram.png)
+
+## Sequence diagram
+![](https://github.com/AlaskaRising/mutants-project/blob/master/diagrams/Sequence%20diagram.png)
 
 :tiger2: Thanks !!
