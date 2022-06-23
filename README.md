@@ -28,6 +28,11 @@ docker-compose up
 * GET  → /stats/   Return a Json with the DNA verification statistics, e.g.: {“count_mutant_dna”:40, “count_human_dna”:100, “ratio”:0.4}
 >localhost:8085/stats
 
+## API deployed in cloud, endpoints in postman collection
+* Download file import it in postman
+
+[Postam Collection](https://github.com/AlaskaRising/mutants-project/blob/master/diagrams/Mutants-Postman-Collection.postman_collection.json)
+
 ## Architecture diagram
 ![](https://github.com/AlaskaRising/mutants-project/blob/master/diagrams/Blank%20diagram.png)
 
